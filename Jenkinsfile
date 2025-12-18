@@ -17,17 +17,29 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                bat 'mvn package'
             }
         }
     }
 
     post {
         success {
-            echo ' Build Successful'
+            echo '✅ Build + Test + Package Successful'
         }
         failure {
-            echo ' Build Failed'
+            echo '❌ Pipeline Failed'
         }
     }
 }
