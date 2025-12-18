@@ -35,11 +35,13 @@ pipeline {
     }
 
     post {
-        success {
-            echo '✅ Build + Test + Package Successful'
-        }
-        failure {
-            echo '❌ Pipeline Failed'
-        }
+    success {
+        archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+        echo 'Artifact archived successfully'
     }
+    failure {
+        echo 'Pipeline Failed'
+    }
+}
+
 }
