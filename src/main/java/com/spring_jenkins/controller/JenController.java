@@ -11,6 +11,6 @@ public class JenController {
 
     @GetMapping
     public String print() {
-        return "Wellcome To India Good morning ";
+        return "Wellcome To India Good morning "
     }
 }
