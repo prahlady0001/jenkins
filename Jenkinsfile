@@ -35,14 +35,18 @@ pipeline {
     }
 
     post {
+
         success {
             emailext(
-                subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+                mimeType: 'text/html',
+                subject: "✅ BUILD SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
-                <h3>Build Successful</h3>
-                <p><b>Project:</b> ${JOB_NAME}</p>
-                <p><b>Build Number:</b> ${BUILD_NUMBER}</p>
-                <p><b>URL:</b> <a href="${BUILD_URL}">${BUILD_URL}</a></p>
+                <h2 style="color:green;">Build Successful 🚀</h2>
+                <p><b>Project:</b> ${env.JOB_NAME}</p>
+                <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+                <p><b>Status:</b> SUCCESS</p>
+                <p><b>Console Output:</b>
+                <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """,
                 to: "prahlady0001@gmail.com"
             )
@@ -50,11 +54,14 @@ pipeline {
 
         failure {
             emailext(
-                subject: "FAILED: ${JOB_NAME} #${BUILD_NUMBER}",
+                mimeType: 'text/html',
+                subject: "❌ BUILD FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
-                <h3>Build Failed</h3>
-                <p><b>Project:</b> ${JOB_NAME}</p>
-                <p><b>Check logs:</b> <a href="${BUILD_URL}">${BUILD_URL}</a></p>
+                <h2 style="color:red;">Build Failed ❌</h2>
+                <p><b>Project:</b> ${env.JOB_NAME}</p>
+                <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+                <p><b>Check Logs:</b>
+                <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """,
                 to: "prahlady0001@gmail.com"
             )
