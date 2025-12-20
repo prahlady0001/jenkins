@@ -44,7 +44,7 @@ pipeline {
                 <p><b>Build Number:</b> ${BUILD_NUMBER}</p>
                 <p><b>URL:</b> <a href="${BUILD_URL}">${BUILD_URL}</a></p>
                 """,
-                to: "yourmail@gmail.com"
+                to: "prahlady0001@gmail.com"
             )
         }
 
@@ -56,7 +56,7 @@ pipeline {
                 <p><b>Project:</b> ${JOB_NAME}</p>
                 <p><b>Check logs:</b> <a href="${BUILD_URL}">${BUILD_URL}</a></p>
                 """,
-                to: "yourmail@gmail.com"
+                to: "prahlady0001@gmail.com"
             )
         }
     }
